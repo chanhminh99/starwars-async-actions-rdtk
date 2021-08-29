@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchCharactersFromAPI } from '../store/charactersSlice';
 
 export const FetchCharacters = () => {
   const [value, setValue] = useState('');
-
+  const dispatch = useDispatch();
   const handleChange = (event) => {
     const newValue = event.target.value;
     setValue(newValue);
@@ -10,6 +12,7 @@ export const FetchCharacters = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch(fetchCharactersFromAPI(value));
     setValue('');
   };
 
